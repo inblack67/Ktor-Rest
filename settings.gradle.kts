@@ -1,0 +1,1 @@
+rootProject.name = "com.inblack67.krest"
