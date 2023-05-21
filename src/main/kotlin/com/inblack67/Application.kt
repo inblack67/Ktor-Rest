@@ -1,5 +1,6 @@
 package com.inblack67
 
+import com.inblack67.dagger.components.DaggerUserHandlerComponent
 import io.ktor.server.application.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
@@ -11,7 +12,11 @@ fun main() {
 }
 
 fun Application.module() {
+    val userHandler = DaggerUserHandlerComponent.create().getUserHandlerComponent()
+
     configureSerialization()
     configureHTTP()
-    configureRouting()
+    configureRouting(
+        userHandler = userHandler
+    )
 }

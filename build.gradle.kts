@@ -19,10 +19,6 @@ application {
     applicationDefaultJvmArgs = listOf("-Dio.ktor.development=$isDevelopment")
 }
 
-kapt {
-    generateStubs = true
-}
-
 repositories {
     mavenCentral()
 }
