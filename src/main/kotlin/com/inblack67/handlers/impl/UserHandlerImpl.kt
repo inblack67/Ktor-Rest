@@ -11,4 +11,8 @@ class UserHandlerImpl @Inject constructor(private val service: UserService) : Us
         return service.createUser(payload)
     }
 
+    override fun getUser(id: Int): User? {
+        return service.getUser(id)
+    }
+
 }

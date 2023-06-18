@@ -1,6 +1,5 @@
 package com.inblack67.plugins
 
-import com.inblack67.dagger.components.DaggerUserHandlerComponent
 import com.inblack67.handlers.UserHandler
 import com.inblack67.models.User
 import io.ktor.server.routing.*
@@ -25,9 +24,10 @@ fun Application.configureRouting(
             call.respond("user created")
         }
 
-        get("/users") {
-            userHandler.createUser(User(id = 1, username = "inblack67"))
-            call.respond(users)
+        get("/users/{id}") {
+            val id = call.parameters["id"]?.toIntOrNull() ?: return@get call.respond("id is required")
+            val res = userHandler.getUser(id) ?: return@get call.respond("Invalid id")
+            call.respond(res)
         }
     }
 }
